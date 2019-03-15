@@ -49,4 +49,10 @@ router.get('/loginhere',function(req,res){
 router.post('/signup', register.register);
 router.post('/profile', login.login);
 
+router.post('/logout',function(req,res){
+  req.session.user=null;
+  res.render('login',{
+    "msg":"Logged out successfully..!"
+  });
+})
 module.exports = router;

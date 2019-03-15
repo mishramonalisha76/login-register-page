@@ -6,7 +6,11 @@ var register = function(req, res) {
     var usermodel = new userModel({
         name: req.body.name,
         email: req.body.email,
+        phone:req.body.phone,
+        username:req.body.username,
+        gender:req.body.gender,
         password: req.body.password,
+
 
     });
 

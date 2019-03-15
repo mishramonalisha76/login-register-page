@@ -23,9 +23,19 @@
 
                         <h2 class="form-title">User Profile</h2>
 
+                      <form action="logout" method="post">
+                        <div class="form-group">
+                          <div class="list-group">
+                                <p class="list-group-item "><b>Name:</b><%- user.name %></p>
+                                <p class="list-group-item "><b>Email:</b><%- user.email %></p>
+                                  <p class="list-group-item "><b>Username:</b><%- user.username %></p>
+                                <p class="list-group-item "><b>Phone:</b><%- user.phone %></p>
+                                <p class="list-group-item "><b>Gender:</b><%- user.gender %></p>
+                           </div>
+                          <input type="submit" name="submit" id="submit" class="form-submit" value="Logout"/>
 
-
-
+                        </div>
+                      </form>
 
                 </div>
             </div>
