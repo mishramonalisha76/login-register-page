@@ -1,25 +1,52 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session');
+var register = require('../controller/register');
+var login = require('../controller/login');
+var userModel = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index');
+  if(req.session.user)
+  {
+    res.redirect('/userprofile');
+  }
+  else {
+    res.render('index');
+  }
 });
 
 router.get('/signin', function(req, res) {
-  res.render('login');
+  if (req.session.user) {
+        res.redirect('/userprofile');
+
+    } else {
+        res.render('login', {
+            "msg": ""
+        });
+    }
+
 });
 router.get('/userprofile', function(req, res) {
-  res.render('profile');
+  if (req.session.user) {
+        res.render('profile', {
+            'user': req.session.user
+        });
+    }
+    else {
+        res.redirect('/')
+    }
+
 });
-router.get('/signup',function(req,res){
-  res.redirect("/userprofile");
-})
-router.get('/profile',function(req,res){
-  res.redirect("/userprofile");
-})
+
 router.get('/loginhere',function(req,res){
-  res.redirect("/signin");
+  res.redirect('/signin');
 })
+
+
+
+
+router.post('/signup', register.register);
+router.post('/profile', login.login);
 
 module.exports = router;
